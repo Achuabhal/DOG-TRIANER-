@@ -1,0 +1,23 @@
+footer {
+    background-color: #45392d;
+    color: #ffffff;
+  }
+  
+  footer h5 {
+    margin-bottom: 20px;
+  }
+  
+  footer ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  footer ul li {
+    margin-bottom: 8px;
+  }
+  
+  footer form .form-control {
+    background-color: #fff;
+    color: #000;
+  }
+  
