@@ -9,6 +9,8 @@ const App: React.FC = () => {
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/admin" element={<HomePage />} />
+        
        
        
         
