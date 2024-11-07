@@ -10,7 +10,7 @@ const App: React.FC = () => {
             <NavBar />
            
             <Footer />
-            {/* Additional sections (e.g., services, testimonials, register) can be added here */}
+            {/* Additional sections (e.g., services, testimonials, register) canh be added here */}
         </div>
     );
 };
