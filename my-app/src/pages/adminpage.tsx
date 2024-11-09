@@ -299,8 +299,8 @@ const AdminPage: React.FC = () => {
       <iframe
         src={photo.url}
         title="Photo"
-        width="600px"
-        height="600px"
+        width="100%"
+        height="400px"
         frameBorder="0"
         style={{ pointerEvents: "none" }}
       ></iframe>
