@@ -4,7 +4,7 @@ import '../css/footer.css';
 
 const Footer: React.FC = () => {
   return (
-    <footer style={{ backgroundColor: '#45392d', color: '#fff', padding: '40px 0' }}>
+    <footer style={{ backgroundColor: 'black', color: '#fff', padding: '40px 0' }}>
       <Container>
         <Row>
           {/* Our Services Column */}

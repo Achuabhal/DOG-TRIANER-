@@ -41,7 +41,7 @@ const Header: React.FC = () => {
   return (
     <div>
       {/* Navbar */}
-      <Navbar expand="lg" style={{ backgroundColor: '#ffffff' }} variant="light">
+      <Navbar expand="lg" style={{ backgroundColor: 'black' }} fixed="top" variant="light">
         <Container>
           {/* Logo and Title */}
           <Navbar.Brand href="/" style={{ display: 'flex', alignItems: 'center' }}>
@@ -51,10 +51,10 @@ const Header: React.FC = () => {
               height="40"
               className="d-inline-block align-top"
             />
-            <span style={{ marginLeft: '10px', fontWeight: 'bold', fontSize: '24px', color: '#2b4c6c' }}>
+            <span style={{ marginLeft: '10px', fontWeight: 'bold', fontSize: '24px', color: '#fcbb45' }}>
               DOG TRAINING
             </span>
-            <span style={{ display: 'block', color: '#666', fontSize: '14px' }}>
+            <span style={{ display: 'block', color: '#fcbb45', fontSize: '14px' }}>
               business theme
             </span>
           </Navbar.Brand>
@@ -70,7 +70,7 @@ const Header: React.FC = () => {
             <Nav className="ms-auto">
               <Nav.Link
                 href="#"
-                style={{ color: '#2b4c6c', fontWeight: 'bold' }}
+                style={{ color: '#fcbb45', fontWeight: 'bold' }}
                 onClick={() => handleNavClick('Home')}
               >
                 Home
@@ -78,7 +78,7 @@ const Header: React.FC = () => {
               <NavDropdown
                 title="Services"
                 id="services-dropdown"
-                style={{ color: '#2b4c6c', fontWeight: 'bold' }}
+                style={{ color: '#fcbb45', fontWeight: 'bold' }}
               >
                 <NavDropdown.Item onClick={() => handleNavClick('Home')}>Puppy Training</NavDropdown.Item>
                 <NavDropdown.Item onClick={() => handleNavClick('Home')}>Basic Training</NavDropdown.Item>
@@ -88,28 +88,28 @@ const Header: React.FC = () => {
               </NavDropdown>
               <Nav.Link
                 href="#"
-                style={{ color: '#2b4c6c', fontWeight: 'bold' }}
+                style={{ color: '#fcbb45', fontWeight: 'bold' }}
                 onClick={() => handleNavClick('About')}
               >
                 About Us
               </Nav.Link>
               <Nav.Link
                 href="#"
-                style={{ color: '#2b4c6c', fontWeight: 'bold' }}
+                style={{ color: '#fcbb45', fontWeight: 'bold' }}
                 onClick={() => handleNavClick('Testimonials')}
               >
                 Testimonials
               </Nav.Link>
               <Nav.Link
                 href="#"
-                style={{ color: '#2b4c6c', fontWeight: 'bold' }}
+                style={{ color: '#fcbb45', fontWeight: 'bold' }}
                 onClick={() => handleNavClick('Blog')}
               >
                 Blog
               </Nav.Link>
               <Nav.Link
                 href="#"
-                style={{ color: '#2b4c6c', fontWeight: 'bold' }}
+                style={{ color: '#fcbb45', fontWeight: 'bold' }}
                 onClick={() => handleNavClick('Register')}
               >
                 Register

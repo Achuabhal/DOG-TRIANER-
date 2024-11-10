@@ -6,7 +6,7 @@ import './css/home.css';
 
 const App: React.FC = () => {
     return (
-        <div className="appcontainer p-0 p-md-5 pt-md-0">
+        <div className="appcontainer p-0 p-md-5 pt-md-0 ">
             <NavBar />
            
             <Footer />
