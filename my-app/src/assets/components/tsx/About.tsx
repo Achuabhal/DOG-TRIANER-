@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Row, Col, Image } from 'react-bootstrap';
 
+
 const AboutUs: React.FC = () => {
   return (
     <Container className="my-5">
