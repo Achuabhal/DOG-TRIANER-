@@ -84,15 +84,24 @@ const AdminPage: React.FC = () => {
       }
     }
   };
-
   const convertToEmbeddedLink = (url: string) => {
-    // Check if it's a Google Drive URL and convert it to embedded format
+    // Check if it's a YouTube link and convert it to embedded format
+    const youtubeRegex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]+)/;
+    const youtubeMatch = url.match(youtubeRegex);
+    if (youtubeMatch && youtubeMatch[1]) {
+      const videoId = youtubeMatch[1];
+      return `https://www.youtube.com/embed/${videoId}`;
+    }
+  
+    // Check if it's a Google Drive link and convert it to embedded format
     if (url.includes("drive.google.com")) {
       const fileId = url.split("/d/")[1]?.split("/")[0];
       return `https://drive.google.com/file/d/${fileId}/preview`;
     }
-    return url; // Return the original URL if it's not a Google Drive link
+  
+    return url; // Return the original URL if it's neither YouTube nor Google Drive
   };
+  
 
   const resetForm = () => {
     setVideoTitle("");
@@ -171,88 +180,103 @@ const AdminPage: React.FC = () => {
       </div>
 
       <div className="card mb-4">
-        <div className="card-body">
-          <form onSubmit={handleSubmit}>
-            <div className="mb-3">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Enter video title"
-                value={videoTitle}
-                onChange={(e) => setVideoTitle(e.target.value)}
-              />
-            </div>
+  <div className="card-body">
+    <form onSubmit={handleSubmit}>
+      <div className="mb-3">
+        <label htmlFor="videoTitle">Video Title</label>
+        <input
+          type="text"
+          id="videoTitle"
+          className="form-control"
+          placeholder="Enter video title"
+          value={videoTitle}
+          onChange={(e) => setVideoTitle(e.target.value)}
+        />
+      </div>
 
-            <div className="mb-3">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Enter Google Drive video link"
-                value={videoLink}
-                onChange={(e) => setVideoLink(e.target.value)}
-              />
-            </div>
+      <div className="mb-3">
+        <label htmlFor="videoLink">Google Drive Video Link</label>
+        <input
+          type="text"
+          id="videoLink"
+          className="form-control"
+          placeholder="Enter Google Drive video link"
+          value={videoLink}
+          onChange={(e) => setVideoLink(e.target.value)}
+        />
+      </div>
 
-            {photoLinks.map((photo, index) => (
-              <div key={index} className="row mb-3">
-                <div className="col-md-5">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder={`Enter Google Drive photo link ${index + 1}`}
-                    value={photo.url}
-                    onChange={(e) => handlePhotoLinkChange(index, e.target.value)}
-                  />
-                </div>
-                <div className="col-md-5">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder={`Description for photo ${index + 1}`}
-                    value={photo.description}
-                    onChange={(e) => handleDescriptionChange(index, e.target.value)}
-                  />
-                </div>
-                <div className="col-md-2">
-                  {index > 0 && (
-                    <button
-                      type="button"
-                      className="btn btn-outline-danger"
-                      onClick={() => handleRemovePhotoLink(index)}
-                    >
-                      Remove
-                    </button>
-                  )}
-                </div>
-              </div>
-            ))}
-
-            <div className="mb-3">
+      {photoLinks.map((photo, index) => (
+        <div key={index} className="row mb-3">
+          <div className="col-md-5">
+            <label htmlFor={`photoLink${index}`}>
+              Google Drive Photo Link {index + 1}
+            </label>
+            <input
+              type="text"
+              id={`photoLink${index}`}
+              className="form-control"
+              placeholder={`Enter Google Drive photo link ${index + 1}`}
+              value={photo.url}
+              onChange={(e) => handlePhotoLinkChange(index, e.target.value)}
+            />
+          </div>
+          <div className="col-md-5">
+            <label htmlFor={`photoDescription${index}`}>
+              Description for Photo {index + 1}
+            </label>
+            <input
+              type="text"
+              id={`photoDescription${index}`}
+              className="form-control"
+              placeholder={`Description for photo ${index + 1}`}
+              value={photo.description}
+              onChange={(e) => handleDescriptionChange(index, e.target.value)}
+            />
+          </div>
+          <div className="col-md-2">
+            {index > 0 && (
               <button
                 type="button"
-                className="btn btn-outline-primary"
-                onClick={handleAddPhotoLink}
+                className="btn btn-outline-danger"
+                onClick={() => handleRemovePhotoLink(index)}
               >
-                Add Another Photo Link
+                Remove
               </button>
-            </div>
-
-            <div className="mb-3">
-              <textarea
-                className="form-control"
-                placeholder="Enter description about the video"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                rows={4}
-              ></textarea>
-            </div>
-
-            <button type="submit" className="btn btn-primary">
-              {editingMedia ? "Update Media" : "Submit Media"}
-            </button>
-          </form>
+            )}
+          </div>
         </div>
+      ))}
+
+      <div className="mb-3">
+        <button
+          type="button"
+          className="btn btn-outline-primary"
+          onClick={handleAddPhotoLink}
+        >
+          Add Another Photo Link
+        </button>
       </div>
+
+      <div className="mb-3">
+        <label htmlFor="description">Video Description</label>
+        <textarea
+          id="description"
+          className="form-control"
+          placeholder="Enter description about the video"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          rows={4}
+        ></textarea>
+      </div>
+
+      <button type="submit" className="btn btn-primary">
+        {editingMedia ? "Update Media" : "Submit Media"}
+      </button>
+    </form>
+  </div>
+</div>
+
 
       <h3 className="mb-4">Media Items:</h3>
       <div className="row">
