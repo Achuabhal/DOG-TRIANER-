@@ -41,7 +41,7 @@ const Header: React.FC = () => {
   return (
     <div>
       {/* Navbar */}
-      <Navbar expand="lg" style={{ backgroundColor: 'black' }} fixed="top" variant="light">
+      <Navbar expand="lg" style={{ backgroundColor: 'black'  }} fixed="top" variant="light" className="ms-lg-5 me-lg-5">
         <Container>
           {/* Logo and Title */}
           <Navbar.Brand href="/" style={{ display: 'flex', alignItems: 'center' }}>
@@ -130,7 +130,7 @@ const Header: React.FC = () => {
       </Navbar>
 
       {/* Conditional Rendering of Active Component */}
-      <div style={{ padding: '20px' }}>
+      <div style={{ paddingTop: '120px' }}>
         {componentsMap[activeComponent]}
       </div>
     </div>
