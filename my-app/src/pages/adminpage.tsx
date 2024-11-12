@@ -51,13 +51,17 @@ const AdminPage: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (videoLink && photoLinks.length > 0 && description && videoTitle) {
+  
+    // Allow submission if there is either a video link or at least one photo link with a URL
+    if ((videoLink || photoLinks.some((photo) => photo.url)) && description && videoTitle) {
       const embeddedVideoLink = convertToEmbeddedLink(videoLink);
-      const embeddedPhotoLinks = photoLinks.map((photo) => ({
-        url: convertToEmbeddedLink(photo.url),
-        description: photo.description,
-      }));
-
+      const embeddedPhotoLinks = photoLinks
+        .filter((photo) => photo.url) // Only include photos with a URL
+        .map((photo) => ({
+          url: convertToEmbeddedLink(photo.url),
+          description: photo.description,
+        }));
+  
       try {
         if (editingMedia) {
           // If we're editing, update the existing media
@@ -84,6 +88,7 @@ const AdminPage: React.FC = () => {
       }
     }
   };
+  
   const convertToEmbeddedLink = (url: string) => {
     // Check if it's a YouTube link and convert it to embedded format
     const youtubeRegex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]+)/;
