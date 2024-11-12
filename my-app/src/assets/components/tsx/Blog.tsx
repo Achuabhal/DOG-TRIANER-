@@ -16,7 +16,6 @@ interface MediaItem {
   videoUrl: string | null;
 }
 
-
 const Blog: React.FC = () => {
   const [user, setUser] = useState<User | null>(null);
   const [mediaItems, setMediaItems] = useState<MediaItem[]>([]);
@@ -55,54 +54,66 @@ const Blog: React.FC = () => {
     })) as MediaItem[];
     return mediaList;
   };
-  
 
   return (
-    <div>
+    <div className="container">
       {user ? (
         <div>
-          <h1>Welcome to the Media Gallery</h1>
-          {mediaItems.map((item) => (
-            <div key={item.id} style={{ marginBottom: '20px' }}>
-              <h2>{item.title}</h2>
-              <p>{item.description}</p>
-              
-              {/* Render photos */}
-              <div className="mt-3">
-  {item.photoUrls.map((photo: Photo) => (
-    <div key={photo.url} className="mb-2">
-      <iframe
-        src={photo.url}
-        title="Photo"
-        width="100%"
-        height="400px"
-        frameBorder="0"
-        style={{ pointerEvents: "none" }}
-      ></iframe>
-      <p>{photo.description}</p>
-    </div>
-  ))}
-</div>
+          <h1 className="text-center my-4">Welcome to the Media Gallery</h1>
+          <div className="row">
+            {mediaItems.map((item) => (
+              <div key={item.id} className="col-12 col-md-6 col-lg-4 mb-4">
+                <div className="card shadow-sm">
+                  <div className="card-body">
+                    <h5 className="card-title">{item.title}</h5>
+                    <p className="card-text">{item.description}</p>
 
-              {/* Render video if it exists */}
-              {item.videoUrl && (
-                <iframe
-                  src={item.videoUrl}
-                  width="560"
-                  height="315"
-                  
-                      frameBorder="0"
-                      allow="autoplay; encrypted-media"
-                  title={item.title}
-                ></iframe>
-              )}
-            </div>
-          ))}
+                    {/* Render photos */}
+                    <div className="mt-3">
+
+                    {item.videoUrl && (
+                      <div className="mt-3">
+                        <iframe
+                          src={item.videoUrl}
+                          width="100%"
+                          height="315"
+                          frameBorder="0"
+                          allow="autoplay; encrypted-media"
+                          title={item.title}
+                          className="rounded"
+                        ></iframe>
+                      </div>
+                    )}
+
+
+                      {item.photoUrls.map((photo: Photo) => (
+                        <div key={photo.url} className="mb-2">
+                          <iframe
+                            src={photo.url}
+                            title="Photo"
+                            width="100%"
+                            height="200px"
+                            frameBorder="0"
+                            style={{ pointerEvents: "none" }}
+                            className="rounded"
+                          ></iframe>
+                          <p>{photo.description}</p>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Render video if it exists */}
+                    
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       ) : (
-        <div>
+        <div className="text-center mt-5">
           <p>You are not authenticated. Please sign in with Google to view the media.</p>
-          <button onClick={handleGoogleSignIn}>Sign in with Google</button>
+          <button className="btn btn-primary" onClick={handleGoogleSignIn}>Sign in with Google</button>
         </div>
       )}
     </div>
